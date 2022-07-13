@@ -1,5 +1,6 @@
 namespace Blocks
 {
+    //CONSTANTS!! YAY!
     public static class Constants
     {
         public const int WINDOW_WIDTH = 1024;
@@ -10,9 +11,9 @@ namespace Blocks
         public const int BOARD_ROWS = 22;
         public const int OVERFLOW = 2;
         public const int CELL = 20;
-        public const double NORMAL_DELAY = 0.5;
+        public const double NORMAL_DELAY = 0.4;
         public const double FAST_DELAY = 0.01;
         public const double LEVEL_SECS = 20;
-        public const double SPEED_BUMP = 1.1;
+        public const double SPEED_BUMP = 1.0;
     }
 }

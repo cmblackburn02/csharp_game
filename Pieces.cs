@@ -2,6 +2,7 @@ namespace Blocks
 {
     public static class Pieces
     {
+        // these are all the different shapes for the blocks
         private static readonly Arr pieceO = new(new[] {
             0, 0, 0, 0,
             0, 1, 1, 0,

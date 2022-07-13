@@ -4,6 +4,12 @@ using FontStashSharp;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using static Blocks.Constants;
+//This game was created by Lech Gudalewicz -> his license is included.
+//I took his code, and modified it in ways, because it was basic
+//and I wanted to make it something more
+//One of the things I did was make it so you could click the down arrow
+//and move down quickly. And more.
+//This is the modified version of Tetris by Cecilee Blackburn
 
 namespace Blocks
 {
@@ -44,6 +50,7 @@ namespace Blocks
             instance = this;
         }
 
+// draws the background behind the actual game.
         protected override void Draw(GameTime gameTime)
         {
 
@@ -59,6 +66,7 @@ namespace Blocks
             spriteBatch.End();
         }
 
+// updates with how long the user has been playing and uses that to give a total Score.
         protected override void Update(GameTime gameTime)
         {
             if (clock.HasValue)
@@ -73,7 +81,7 @@ namespace Blocks
             }
         }
 
-
+// this gives a way to have our window and inner window
         protected override void Initialize()
         {
             base.Initialize();
@@ -96,13 +104,14 @@ namespace Blocks
             );
         }
 
+// this uses our assets folder and the file helps with font
         protected override void LoadContent()
         {
             fontSystem.AddFont(File.ReadAllBytes("assets/FSEX300.ttf"));
             font18 = fontSystem.GetFont(18);
         }
 
-        public static void Main()
+        public static void Main(string[] args)
         {
             using var app = new App();
             app.Run();

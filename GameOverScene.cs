@@ -10,6 +10,9 @@ namespace Blocks
         private GameSummary gameSummary;
         private readonly InputManager inputManager = new();
 
+
+// this allows you to play again when you press enter at the end of the game
+// if also allows you to exit immediately and continue on about your day.
         public void Enter(SceneManager manager, object state)
         {
             sceneManager = manager;
@@ -27,7 +30,7 @@ namespace Blocks
         public void Leave()
         {
         }
-
+// this kindly tells you your score and level along with the options to play again or leave
         public void Render(SpriteBatch spriteBatch)
         {
             App.Instance.Font18.DrawText(
@@ -61,7 +64,7 @@ namespace Blocks
                 Color.White
             );
         }
-
+// this updates the scores and the board to reset if needed
         public void Update(double dt)
         {
             inputManager.Update(dt);

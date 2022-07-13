@@ -18,7 +18,7 @@ namespace Blocks
         {
             oldKeys = Keyboard.GetState();
         }
-
+// allows the game to update and tells the computer when the key is pressed
         public void Update(double _)
         {
             var keys = Keyboard.GetState();

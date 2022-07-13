@@ -10,6 +10,7 @@ namespace Blocks
     public class PlayScene : IScene
     {
         private Engine engine;
+// the fun colors of the blocks
         private readonly Color[] palette = new Color[]
         {
             Color.Black,
@@ -21,6 +22,7 @@ namespace Blocks
             Color.Green,
             Color.Red,
         };
+        
         private double baseDelay;
         private double curDelay;
         private double elapsed;
@@ -29,7 +31,7 @@ namespace Blocks
         int level = 1;
         private readonly InputManager input = new();
         private SceneManager sceneManager;
-
+// tells the computer what to do when certain keys are pressed
         private void Reset()
         {
             baseDelay = NORMAL_DELAY;
@@ -47,9 +49,17 @@ namespace Blocks
             {
                 engine.Rotate();
             });
+            input.Handle(Keys.Down, () =>
+            {
+                engine.DownMore();
+            });
             input.Handle(Keys.Space, () =>
             {
                 curDelay = FAST_DELAY;
+            });
+            input.Handle(Keys.Escape, () =>
+            {
+                App.Instance.Exit();
             });
             engine.Spawn();
             engine.Dropped = () =>
@@ -68,6 +78,8 @@ namespace Blocks
         {
             Reset();
         }
+// this tells the user what parts of the inner diagram is in the game
+//at the bottom, it shows what is on the side of the inner window
         public void Render(SpriteBatch spriteBatch)
         {
             var sx = (VIRTUAL_WIDTH - CELL * BOARD_COLS) / 2;
@@ -99,8 +111,14 @@ namespace Blocks
                 new Vector2(16, 32),
                 Color.White
                 );
+            font.DrawText(
+                spriteBatch,
+                "[escape] to exit. :)",
+                new Vector2(16, 48),
+                Color.White
+            );
         }
-
+// this updates and adds speed to how fast the blocks fall
         public void Update(double dt)
         {
             input.Update(dt);
@@ -125,14 +143,13 @@ namespace Blocks
                 baseDelay /= SPEED_BUMP;
             }
         }
-
+// updates the score
         private void UpdateScore(int removed)
         {
             var scoreMultipliers = new[] { 0, 40, 100, 300, 1200 };
             score += scoreMultipliers[removed] * (level + 1);
 
         }
-
         public void Enter(SceneManager manager, object _)
         {
             sceneManager = manager;
@@ -140,9 +157,9 @@ namespace Blocks
             level = 0;
             Reset();
         }
+        public readonly InputManager inputManager = new();
         public void Leave()
         {
-
         }
 
     }

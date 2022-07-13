@@ -1,5 +1,6 @@
 namespace Blocks
 {
+    // this class is here to represent a huge array
     public class Arr
     {
         private readonly int[] buf;
@@ -37,6 +38,7 @@ namespace Blocks
             source.CopyTo(buf, 0);
         }
 
+// tells the computer if the block can be placed
         public bool CanPlace(Arr piece, int r, int c)
         {
             for (int y = 0; y < piece.Rows; y++)
@@ -66,7 +68,7 @@ namespace Blocks
             }
             return true;
         }
-
+// this places the block
         public void Place(Arr piece, int r, int c)
         {
             for (int y = 0; y < piece.Rows; y++)
@@ -88,7 +90,7 @@ namespace Blocks
         {
             get => new(buf, rows);
         }
-
+// decides if we can remove a row
         public void Remove(Arr piece, int r, int c)
         {
             for (int y = 0; y < piece.Rows; y++)
@@ -103,7 +105,7 @@ namespace Blocks
             }
         }
 
-
+// this makes it so we can rotate the blocks clockwise
         public Arr RotatedClockwise
         {
             get
@@ -122,7 +124,7 @@ namespace Blocks
                 return dst;
             }
         }
-
+// this makes it so we can rotate the blocks counter clockwise
         public Arr RotatedCounterClockwise
         {
             get
@@ -141,7 +143,7 @@ namespace Blocks
                 return dst;
             }
         }
-
+// this determines if the row is full
         private bool IsRowFull(int row)
         {
             for (int c = 0; c < cols; ++c)
@@ -153,7 +155,6 @@ namespace Blocks
             }
             return true;
         }
-
         private void ShiftRow(int row)
         {
             for (int c = 0; c < cols; ++c)
@@ -161,7 +162,7 @@ namespace Blocks
                 this[row + 1, c] = this[row, c];
             }
         }
-
+// this clears the row
         private void ClearRow(int row)
         {
             for (int c = 0; c < cols; ++c)
@@ -169,7 +170,7 @@ namespace Blocks
                 this[row, c] = 0;
             }
         }
-
+// this removes the row
         private void RemoveRow(int row)
         {
             for (int r = row; r > 0; r--)
@@ -178,7 +179,7 @@ namespace Blocks
             }
             ClearRow(0);
         }
-
+//this removes a full row
         public int RemoveFullRows()
         {
             int removed = 0;
